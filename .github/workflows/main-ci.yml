@@ -33,11 +33,5 @@ jobs:
       name: Build and push
       run: |
         docker login --username=batcom --password=${{ secrets.DOCKER_PASSWORD }}
-        docker tag laradock_workspace:latest batcom/laradock_workspace
-        docker tag laradock_php-fpm:latest batcom/laradock_php-fpm
-        docker tag laradock_php-worker:latest batcom/laradock_php-worker
-        docker tag laradock_laravel-horizon:latest batcom/laradock_laravel-horizon
-        docker push batcom/laradock_workspace
-        docker push batcom/laradock_php-worker
-        docker push batcom/laradock_php-fpm
-        docker push batcom/laradock_laravel-horizon
+        docker tag laradock_${{ matrix.service }} batcom/laradock_${{ matrix.service }}
+        docker push batcom/laradock_${{ matrix.service }}
